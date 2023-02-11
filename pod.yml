@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nodeapp 
+  name: medicure-image
   labels:
-    app: nodeapp
+    app: medicure-image
 spec:
       containers:
-      - name: nodeapp
+      - name: medicure-image
         image: ankit9090/medicure-image:latest
         ports:
         - containerPort: 8082
