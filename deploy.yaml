@@ -1,1 +1,14 @@
+- name : Configure Docker on EC2 Instances
+  hosts : kubernetes
+  become: true
+  connection : ssh
+  tasks : 
+  - name: Create Deploy 
+    command : sh kubectl create -f pod.yaml
+    become : yes
+    become_user : root
 
+  - name : Create Service
+    command : sh kubectl create -f service.yaml
+    become : yes
+    become_user : root
