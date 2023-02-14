@@ -4,11 +4,11 @@
   connection : ssh
   tasks : 
   - name: Create Deploy 
-    command : sh kubectl apply -f pod.yml
+    command : sh kubectl create -f pod.yml
     become : yes
     become_user : root
 
   - name : Create Service
-    command : sh kubectl apply -f service.yml
+    command : sh kubectl create -f service.yml
     become : yes
     become_user : root
