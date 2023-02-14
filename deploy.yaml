@@ -1,14 +1,14 @@
 - name : Configure Kubernetes on EC2 Instances
-  hosts :3.15.203.157
+  hosts : 3.17.174.79
   become: true
   connection : ssh
   tasks : 
   - name: Create Deploy 
-    command : sh kubectl create -f pod.yml
+    command : sh kubectl apply -f pod.yml
     become : yes
     become_user : root
 
   - name : Create Service
-    command : sh kubectl create -f service.yml
+    command : sh kubectl apply -f service.yml
     become : yes
     become_user : root
