@@ -1,2 +1,2 @@
-sh kubectl create -f pod.yaml
-sh kubectl create -f service.yaml
+sh kubectl apply -f pod.yaml
+sh kubectl apply -f service.yaml
