@@ -2,11 +2,7 @@
   hosts : 18.119.111.83
   become: true
   connection : ssh
-  tasks :
-  - name: Run deploy.sh and output "deploy /"
-      script: deploy.sh
-      register: out
-      
+  tasks : 
   - name: Create Deploy 
     command : sh kubectl apply -f pod.yml
     become : yes
