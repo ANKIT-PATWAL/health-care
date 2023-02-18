@@ -2,13 +2,22 @@
   hosts : 18.191.189.152
   become: true
   connection : ssh
-  tasks : 
-  - name: Create Deploy 
-    command : sh kubectl apply -f pod.yml
-    become : yes
-    become_user : root
+  tasks :
+   - name: updating apt
+     command : sudo apt-get update
 
-  - name : Create Service
-    command : sh kubectl apply -f service.yml
-    become : yes
-    become_user : root
+
+   -  name: Create Deploy 
+      command : sh kubectl apply -f pod.yml
+      become : yes
+      become_user : root
+
+   -  name : Create Service
+      command : sh kubectl apply -f service.yml
+      become : yes
+      become_user : root
+   
+   - name : expose service
+     command : sh kubectl expose pod medicure-image --type=LoadBalancer --port=8082
+     become : yes
+     become_user : root
