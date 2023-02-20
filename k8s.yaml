@@ -1,0 +1,19 @@
+- name : Configure Docker on EC2 Instances
+  hosts : all
+  become: true
+  connection : ssh
+  tasks : 
+  - name: updating apt
+    command : sudo apt-get update
+
+  - name : Create pod File
+    command : kubectl apply -f pod.yml
+    become : yes
+    become_user : root
+
+  - name : Start Expose Service
+    command : kubectl expose pod medicure-image --type=LoadBalancer --name=service
+    become : yes
+    become_user : root
+
+  
