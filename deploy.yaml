@@ -1,5 +1,5 @@
 - name : Configure Kubernetes on EC2 Instances
-  hosts : 18.116.89.165
+  hosts : 18.191.242.35
   become: true
   connection : ssh
   tasks :
