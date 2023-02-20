@@ -19,7 +19,7 @@
       - name: nodeapp
         image: ankit9090/medicure-image:latest
         ports:
-        - containerPort: 8082
+        - containerPort: 8084
       -  name: Create Devlopment Namespace
 
 
@@ -38,5 +38,5 @@
                ports:
                - protocol: TCP
                  port: 80
-                 targetPort: 8082
+                 targetPort: 8084
                  type: LoadBalancer
