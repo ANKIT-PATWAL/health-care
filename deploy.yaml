@@ -24,10 +24,10 @@
 
 
 
-   -  name : Create service for kubernetes 
+   -  name : 
       k8s:
-      state: present
-      difinition:
+        state: present
+        difinition:
           apiVersion: v1
           kind: Service
           metadata:
