@@ -1,23 +1,39 @@
 - name : Configure Kubernetes on EC2 Instances
-  hosts : 18.191.189.152
+  hosts : 18.116.89.165
   become: true
   connection : ssh
   tasks :
-   - name: updating apt
-     command : sudo apt-get update
-
-
-   -  name: Create Deploy 
-      command : sh kubectl apply -f pod.yml
-      become : yes
-      become_user : root
-
-   -  name : Create Service
-      command : sh kubectl apply -f service.yml
-      become : yes
-      become_user : root
-   
-   - name : expose service
-     command : sh kubectl expose pod medicure-image --type=LoadBalancer --port=8082
-     become : yes
-     become_user : root
+   - name: Deploy in K8s
+     k8s :
+       state: present
+       definition:
+           apiVersion: v1
+           kind: Pod
+           metadata:
+      name: nodeapp 
+  labels:
+    app: nodeapp
+  spec:
+      containers:
+      - name: nodeapp
+        image: ankit9090/medicure-image:latest
+        ports:
+        - containerPort: 8082
+      -  name: Create Devlopment Namespace
+            
+-  name:  service expose  
+      k8s:
+      state: present
+      difinition:
+          apiVersion: v1
+          kind: Service
+          metadata:
+   name: nodeapp
+   spec:
+  selector:
+    app: nodeapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8082
+  type: LoadBalancer
