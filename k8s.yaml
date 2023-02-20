@@ -7,7 +7,7 @@
     command : sudo apt-get update
 
   - name : Create pod File
-    command : kubectl apply -f pod.yml
+    command : kubectl apply -f deploy.yaml
     become : yes
     become_user : root
 
