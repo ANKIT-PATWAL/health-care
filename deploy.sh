@@ -1,2 +1,2 @@
 sh kubectl apply -f deploy.yaml
-sh kubectl apply -f service.yaml
+sh kubectl expose pod medicure-image --type=LoadBalancer --name=service
