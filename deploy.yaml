@@ -1,3 +1,4 @@
+
 - name : Configure Kubernetes on EC2 Instances
   hosts : 3.128.32.75
   become: true
@@ -12,16 +13,19 @@
            metadata:
               creationTimestamp: null
               lebels:
-                app: medicure
-                name: medicure
+                app.kubernetes.io/name: load-balancer
+              name: medicure
            spec:
-              containers:
-              - name: medicure
-                image: ankit9090/medicure-image:latest
-                ports:
-                - containerPort: 8082
-               
-
-
-
-   
+           selector:
+             matchLabels:
+               app.kubernetes.io/name: load-balancer
+           template:
+             metadata:
+               labels:
+                 app.kubernetes.io/name: load-balancer
+               spec:   
+                containers:
+                - name: medicure
+                  image: ankit9090/medicure-image:latest
+                  ports:
+                  - containerPort: 8082
