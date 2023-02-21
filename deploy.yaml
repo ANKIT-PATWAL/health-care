@@ -20,23 +20,8 @@
                 image: ankit9090/medicure-image:latest
                 ports:
                 - containerPort: 8082
-                -  name: Create Devlopment Namespace
+               
 
 
 
-   -  name : 
-      k8s:
-        state: present
-        difinition:
-          apiVersion: v1
-          kind: Service
-          metadata:
-            name: 
-             spec:
-               selector:
-                 app: medicure
-               ports:
-               - protocol: TCP
-                 port: 80
-                 targetPort: 8082
-                 type: LoadBalancer
+   
