@@ -1,19 +1,24 @@
-- name : Configure Docker on EC2 Instances
-  hosts : 18.191.242.35
+- name : Configure k8s on EC2 Instances
+  hosts : 13.59.224.130
   become: true
   connection : ssh
   tasks : 
   - name: updating apt
     command : sudo apt-get update
+    
+  - name: permission
+    command: cd /home/ubuntu/cri-deckerd/
+    shell: export KUBECONFIG=/etc/kubernetes/admin.conf && cp /etc/kubernetes/admin.conf $HOME/ && chown $(id -u):$(id -g) $HOME/admin.conf && export KUBECONFIG=$HOME/admin.conf
+    become: true
+    become_user: root
 
+    
   - name : Create pod File
     command : kubectl apply -f deploy.yaml
-    become : yes
-    become_user : root
+  
 
   - name : Start Expose Service
     command : kubectl expose pod medicure-image --type=LoadBalancer --name=service
-    become : yes
-    become_user : root
+   
 
   
