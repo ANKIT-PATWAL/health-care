@@ -6,14 +6,14 @@
   - name: updating apt
     command : sudo apt-get update
     
-  - name: permission
+  - name: k8s 
     command: cd /home/ubuntu/cri-deckerd/
     shell: export KUBECONFIG=/etc/kubernetes/admin.conf && cp /etc/kubernetes/admin.conf $HOME/ && chown $(id -u):$(id -g) $HOME/admin.conf && export KUBECONFIG=$HOME/admin.conf
     become: true
     become_user: root
 
     
-  - name : Create pod File
+  - name : Create deploy File
     command : kubectl apply -f deploy.yaml
   
 
